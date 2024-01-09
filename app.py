@@ -23,7 +23,7 @@ line_bot_api = LineBotApi('0kZUJDH6s1sOmSe/pe8tHHYstrnJs4Eigq+Nux7yz7o1NbFSYXKUq
 # Channel Secret
 handler = WebhookHandler('b523c4cc7fe5949f7716aa0c4fa22cfe')
 # OPENAI API Key初始化設定
-openai.api_key = os.getenv('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')
+openai.api_key = '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'
 
 
 def GPT_response(text):
