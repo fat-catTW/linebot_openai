@@ -19,16 +19,16 @@ import traceback
 app = Flask(__name__)
 static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
 # Channel Access Token
-line_bot_api = LineBotApi('0kZUJDH6s1sOmSe/pe8tHHYstrnJs4Eigq+Nux7yz7o1NbFSYXKUqOS4RPstHz7nzJ4eHMnpm74EU8ppoOzanB26PVuolyY5QYQxFV26rWvs1HFRoLKckSUJLCa+F6kOg4L4ZWsazCVq0z0Qk7C7egdB04t89/1O/w1cDnyilFU=')
+line_bot_api = LineBotApi(os.getenv('CHANNEL_ACCESS_TOKEN'))
 # Channel Secret
-handler = WebhookHandler('b523c4cc7fe5949f7716aa0c4fa22cfe')
+handler = WebhookHandler(os.getenv('CHANNEL_SECRET'))
 # OPENAI API Key初始化設定
-openai.api_key = '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'
+openai.api_key = os.getenv('OPENAI_API_KEY')
 
 
 def GPT_response(text):
     # 接收回應
-    response = openai.Completion.create(model="text-davinci-003", prompt=text, temperature=0.5, max_tokens=500)
+    response = openai.Completion.create(model="gpt-3.5-turbo-instruct", prompt=text, temperature=0.5, max_tokens=500)
     print(response)
     # 重組回應
     answer = response['choices'][0]['text'].replace('。','')
